@@ -23,9 +23,7 @@
 from src.models.pseudolabel import train_main
 from pathlib import Path as P
 import logging
-import numpy as np
 import warnings
-import itertools
 from src.vis.visualize import *
 from src.utils.io_utils import *
 import matplotlib.pyplot as plt
@@ -38,7 +36,7 @@ if __name__ == "__main__":
     method = 'plp'
     dataname = 'Digits-10.mat'
     datapath = P("./data/").joinpath(dataname)
-    eta = 5
+    eta = 50
     savedir = P(f"output/{method}/{dataname}-{eta}")
 
     train_main(
@@ -48,7 +46,7 @@ if __name__ == "__main__":
         savedir=savedir,
         save_vars=True,
         pp_type='G',
-        lamda=0.01,
+        lamda=0.1,
     )
 
     H_common = load_var(savedir, "H_common")
