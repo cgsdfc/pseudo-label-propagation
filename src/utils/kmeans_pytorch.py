@@ -83,7 +83,6 @@ def kmeans(
     if tqdm_flag:
         tqdm_meter = tqdm(desc="[running kmeans]")
     while True:
-
         dis = pairwise_distance_function(X, initial_state)
 
         choice_cluster = torch.argmin(dis, dim=1)

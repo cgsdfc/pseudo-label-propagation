@@ -152,7 +152,6 @@ def propagate_labels_global(
     device: int,
     ppl: int,
     lamda: float,
-    **kwds,
 ):
     model = Model_GCNTSNE_AllSamples(
         in_channels=data.view_dims,
@@ -161,7 +160,6 @@ def propagate_labels_global(
         perplexity=ppl,
         lamda=lamda,
         verbose=True,
-        # **kwds,
     ).to(device)
 
     outputs = model.fit(X=X, M=M, Y_paired=Y_paired, data=data)

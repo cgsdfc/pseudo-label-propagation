@@ -396,15 +396,15 @@ def collect_csv(
         except FileNotFoundError:
             continue
         # some basic postprocess
-        if 'datapath' in res:
-            res['datapath'] = P(res['datapath']).stem
-            res['dataset'] = res['datapath']
-            del res['datapath']
+        if "datapath" in res:
+            res["datapath"] = P(res["datapath"]).stem
+            res["dataset"] = res["datapath"]
+            del res["datapath"]
         for m in METRICS_LIST:
             if m in res and res[m] <= 1:
-                res[m] = round(100*res[m], 2)
-        if 'eta' in res and res['eta'] <= 1:
-            res['eta'] = round(100 * res['eta'], 0)
+                res[m] = round(100 * res[m], 2)
+        if "eta" in res and res["eta"] <= 1:
+            res["eta"] = round(100 * res["eta"], 0)
         out.append(res)
 
     df = pd.DataFrame.from_records(out)

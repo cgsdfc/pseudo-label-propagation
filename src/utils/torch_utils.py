@@ -49,7 +49,7 @@ def convert_tensor(thing, dtype=torch.float, dev="cpu"):
     if isinstance(thing, (list, tuple)):
         return [convert_tensor(x, dtype, dev) for x in thing]
     elif isinstance(thing, dict):
-        return {key : convert_tensor(val) for key, val in thing.items()}
+        return {key: convert_tensor(val) for key, val in thing.items()}
     elif isinstance(thing, np.ndarray):
         return torch.tensor(thing, dtype=dtype, device=dev)
     elif isinstance(thing, torch.Tensor):
@@ -67,7 +67,7 @@ def convert_numpy(thing):
     if isinstance(thing, (list, tuple)):
         return [convert_numpy(x) for x in thing]
     elif isinstance(thing, dict):
-        return {key : convert_numpy(val) for key, val in thing.items()}
+        return {key: convert_numpy(val) for key, val in thing.items()}
     elif isinstance(thing, torch.Tensor):
         return thing.detach().cpu().numpy()
     else:

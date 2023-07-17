@@ -90,7 +90,7 @@ def plot_gnd_corrupted_hat(imc_data: PartialMultiviewDataset, X_hat):
         plt.title(f"x_hat {v}")
 
 
-def plot_gnd_hat(X_gnd, X_hat, pdist=False, cmap='gray'):
+def plot_gnd_hat(X_gnd, X_hat, pdist=False, cmap="gray"):
     """Display sidebyside x_gnd and x_hat"""
     assert len(X_gnd) == len(X_hat)
     rows = 2
@@ -105,10 +105,24 @@ def plot_gnd_hat(X_gnd, X_hat, pdist=False, cmap='gray'):
 
     plt.figure(figsize=((cols + 1) * scale, rows * scale))
     for v, (x_gnd, x_hat) in enumerate(zip(X_gnd, X_hat), start=1):
-        sns.heatmap(x_gnd, ax=plt.subplot(rows, cols, v), cbar=False, xticklabels=False, yticklabels=False, cmap=cmap)
+        sns.heatmap(
+            x_gnd,
+            ax=plt.subplot(rows, cols, v),
+            cbar=False,
+            xticklabels=False,
+            yticklabels=False,
+            cmap=cmap,
+        )
         # plt.title(f"x_gnd {v}")
 
-        sns.heatmap(x_hat, ax=plt.subplot(rows, cols, v + cols), cbar=False, xticklabels=False, yticklabels=False, cmap=cmap)
+        sns.heatmap(
+            x_hat,
+            ax=plt.subplot(rows, cols, v + cols),
+            cbar=False,
+            xticklabels=False,
+            yticklabels=False,
+            cmap=cmap,
+        )
         # plt.title(f"x_hat {v}")
     plt.tight_layout()
 

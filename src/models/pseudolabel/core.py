@@ -13,7 +13,11 @@ from src.utils.io_utils import *
 from src.utils.torch_utils import *
 from src.vis.visualize import *
 
-from .propagate import propagate_labels_global, propagate_labels_local, BUILD_GRAPH_METHOD
+from .propagate import (
+    propagate_labels_global,
+    propagate_labels_local,
+    BUILD_GRAPH_METHOD,
+)
 
 from .subspace import Model_Simple_MVC, Model_Subspace_MVC
 
@@ -60,15 +64,13 @@ def train_main(
     datapath=P("./data/ORL-40.mat"),
     eta=0.5,
     views=None,
-
-    pp_type: Literal['L', "G"] = "L",
-    init: INIT_LABELS_METHOD = 'Subspace',
+    pp_type: Literal["L", "G"] = "L",
+    init: INIT_LABELS_METHOD = "Subspace",
     build_graph: BUILD_GRAPH_METHOD = "KNN",
     k: int = 7,
     ppl: int = 10,
     lamda: float = 0.1,
     hidden_dims: int = 128,
-
     device="cpu",
     savedir: P = P("output/pseudolabel"),
     save_vars: bool = False,
@@ -110,7 +112,7 @@ def train_main(
 
     logging.info(f"Propagate labels")
 
-    if pp_type == 'G':
+    if pp_type == "G":
         # Global
         outputs, metrics = propagate_labels_global(
             data=data,
@@ -139,6 +141,7 @@ def train_main(
 
     if save_vars:
         outputs = convert_numpy(outputs)
-        save_var(savedir, outputs, "outputs")
+        H_common = outputs['H_common']
+        save_var(savedir, H_common, "H_common")
 
     train_end(savedir, metrics)

@@ -174,4 +174,3 @@ def make_joint_anchor(Z):
     S = Make_DiagMask_like(S) * S  # 去掉对角线。
     S = S / torch.sum(S)  # 归一化。
     return EPS_max(S)  # 数值稳定。
-

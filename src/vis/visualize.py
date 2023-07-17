@@ -20,7 +20,7 @@ from sklearn.model_selection import train_test_split
 # logging.info(f"use backend {matplotlib.get_backend()}")
 
 
-def plot_scatters(H, datapath: P, size=10, palette='viridis', markers='o'):
+def plot_scatters(H, datapath: P, size=10, palette="viridis", markers="o"):
     H = TSNE().fit_transform(H)
     data = MultiviewDataset(datapath=datapath)
     df = pd.DataFrame.from_dict(dict(x=H[:, 0], y=H[:, 1], label=data.Y))
